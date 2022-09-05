@@ -161,6 +161,18 @@ export function SidebarNavigation() {
   const router = useRouter();
   const { isSidebarCollapsed, toggleSidebar } = useContext(NavigationContext);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const openEmailClient = () => {
+    //Prefill values
+
+    const recipient = "support@prolog-app.com";
+    //add %20 to the subject string to keep the trailing space
+    const subject = "Support Request:" + "%20";
+
+    //push the mailto link to the router
+    router.push(`mailto:${recipient}?subject=${subject}`);
+  };
+
   return (
     <Container isCollapsed={isSidebarCollapsed}>
       <FixedContainer>
@@ -198,7 +210,7 @@ export function SidebarNavigation() {
               text="Support"
               iconSrc="/icons/support.svg"
               isCollapsed={isSidebarCollapsed}
-              onClick={() => alert("Support")}
+              onClick={openEmailClient}
             />
             <CollapseMenuItem
               text="Collapse"
