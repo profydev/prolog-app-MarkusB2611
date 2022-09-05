@@ -164,10 +164,8 @@ export function SidebarNavigation() {
 
   const openEmailClient = () => {
     //Prefill values
-
     const recipient = "support@prolog-app.com";
-    //add %20 to the subject string to keep the trailing space
-    const subject = "Support Request:" + "%20";
+    const subject = "Support Request:" + "%20"; //add %20 to the subject string to keep the trailing space
 
     //push the mailto link to the router
     router.push(`mailto:${recipient}?subject=${subject}`);
