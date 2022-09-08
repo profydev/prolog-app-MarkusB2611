@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import styled from "styled-components";
-import { color, space } from "@styles/theme";
+import styled, { css } from "styled-components";
+import { breakpoint, color, space } from "@styles/theme";
 
 type MenuItemProps = {
   text: string;
@@ -37,6 +37,15 @@ export const Icon = styled.img`
   width: ${space(6)};
   margin-right: ${space(3)};
 `;
+export const Text = styled.span<{ isCollapsed: boolean }>`
+  @media (min-width: ${breakpoint("desktop")}) {
+    ${(props) =>
+      props.isCollapsed &&
+      css`
+        display: none;
+      `};
+  }
+`;
 
 export function MenuItemLink({
   text,
@@ -50,7 +59,8 @@ export function MenuItemLink({
       <Link href={href} passHref>
         <Anchor>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <Icon src={iconSrc} alt={`${text} icon`} /> {!isCollapsed && text}
+          <Icon src={iconSrc} alt={`${text} icon`} />{" "}
+          <Text isCollapsed={isCollapsed}>{text}</Text>
         </Anchor>
       </Link>
     </ListItem>
