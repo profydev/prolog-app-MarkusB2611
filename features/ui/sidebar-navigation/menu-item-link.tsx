@@ -59,7 +59,7 @@ export function MenuItemLink({
       <Link href={href} passHref>
         <Anchor>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <Icon src={iconSrc} alt={`${text} icon`} />{" "}
+          <Icon src={iconSrc} alt={`${text} icon`} />
           <Text isCollapsed={isCollapsed}>{text}</Text>
         </Anchor>
       </Link>
