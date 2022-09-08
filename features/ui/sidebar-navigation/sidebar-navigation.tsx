@@ -16,6 +16,9 @@ const menuItems = [
   { text: "Settings", iconSrc: "/icons/settings.svg", href: Routes.settings },
 ];
 
+const recipient = "support@prolog-app.com";
+const subject = "Support%20Request:%20"; //add %20 to the subject string to keep the trailing space
+
 const containerStyles = css`
   width: 100%;
   display: flex;
@@ -161,6 +164,7 @@ export function SidebarNavigation() {
   const router = useRouter();
   const { isSidebarCollapsed, toggleSidebar } = useContext(NavigationContext);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <Container isCollapsed={isSidebarCollapsed}>
       <FixedContainer>
@@ -194,11 +198,12 @@ export function SidebarNavigation() {
           </LinkList>
 
           <List>
-            <MenuItemButton
+            <MenuItemLink
+              isActive={false}
               text="Support"
               iconSrc="/icons/support.svg"
               isCollapsed={isSidebarCollapsed}
-              onClick={() => alert("Support")}
+              href={`mailto:${recipient}?subject=${subject}`}
             />
             <CollapseMenuItem
               text="Collapse"
