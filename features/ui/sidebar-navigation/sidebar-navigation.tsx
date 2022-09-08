@@ -71,10 +71,16 @@ const Header = styled.header`
   }
 `;
 
-const Logo = styled.img`
+const Logo = styled.img<{ isCollapsed: boolean }>`
   width: 7.375rem;
+  content: url("/icons/logo-large.svg");
 
   @media (min-width: ${breakpoint("desktop")}) {
+    ${(props) =>
+      props.isCollapsed &&
+      css`
+        content: url("/icons/logo-small.svg");
+      `};
     margin: ${space(0, 4)};
   }
 `;
@@ -169,14 +175,7 @@ export function SidebarNavigation() {
     <Container isCollapsed={isSidebarCollapsed}>
       <FixedContainer>
         <Header>
-          <Logo
-            src={
-              isSidebarCollapsed
-                ? "/icons/logo-small.svg"
-                : "/icons/logo-large.svg"
-            }
-            alt="logo"
-          />
+          <Logo isCollapsed={isSidebarCollapsed} alt="logo" />
           <MenuButton onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}>
             <MenuIcon
               src={isMobileMenuOpen ? "/icons/close.svg" : "/icons/menu.svg"}
